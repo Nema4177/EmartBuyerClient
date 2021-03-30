@@ -27,7 +27,6 @@ public interface BuyerInterfaceApi {
         displayCart
     }
     
-    public JSONObject createAccount(String username, String password) throws ParseException;
     
     public JSONObject displayCart(int buyerId) throws ParseException;
     
@@ -35,13 +34,13 @@ public interface BuyerInterfaceApi {
     
     public JSONObject logout(int buyerId) throws ParseException;
     
-    public JSONObject pushFeedback(int itemId, int buyerId, int feedback) throws ParseException;
+    public JSONObject pushFeedback(int itemId, int buyerId,int sellerId, int feedback) throws ParseException;
     
     public JSONObject getSellerRating(int sellerId, int buyerId) throws ParseException;
     
     public JSONObject getBuyerHistory(int buyerId) throws ParseException;
     
-    public JSONObject purchase(int itemId, int quantity, String creditCardName, int creditCardNumber, String expirtationDate, int buyerId) throws ParseException;
+    public JSONObject purchase(String creditCardName, int creditCardNumber, String expirtationDate, int buyerId) throws ParseException;
     
     
     /**
@@ -60,7 +59,7 @@ public interface BuyerInterfaceApi {
      * @param itemId  of the item to be added to the cart
      * @param quantity of the items to be added
      */
-    public JSONObject addItemToCart(int buyerId, int itemId, int quantity) throws ParseException;
+    public JSONObject addItemToCart(int buyerId, int sellerId,int itemId,String itemName, int quantity) throws ParseException;
 
     /**
      * API for removing item from the cart
@@ -76,6 +75,8 @@ public interface BuyerInterfaceApi {
      *
      * @param buyerId of the buyer
      */
-    public JSONObject clearCart(int buyerId) throws ParseException;
+    public void clearCart(int buyerId) throws ParseException;
+
+	JSONObject createAccount(String username, String name, String password) throws ParseException;
 
 }

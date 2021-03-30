@@ -12,35 +12,39 @@ import com.emart.utils.BuyerConstants;
 
 @Component
 public class RestUtils {
-	
 
 	public JSONObject getRequest(String url) throws ParseException {
 		JSONParser jsonParser = new JSONParser();
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.setErrorHandler(new RestErrorHandler());
-		ResponseEntity<String> response
-		  = restTemplate.getForEntity(url, String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 		HttpStatus statusCode = response.getStatusCode();
-		if(!statusCode.equals(HttpStatus.OK)) {
-			System.out.println("API call returned status code "+statusCode);
+		if (!statusCode.equals(HttpStatus.OK)) {
+			System.out.println("API call returned status code " + statusCode);
 			JSONObject failureResponse = new JSONObject();
 			failureResponse.put(BuyerConstants.response_status_key, BuyerConstants.failure);
 			return failureResponse;
 		}
 		String responseBody = response.getBody();
 		return (JSONObject) jsonParser.parse(responseBody);
-			
-		}
-	
+
+	}
+
+	public void deleteRequest(String url) throws ParseException {
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setErrorHandler(new RestErrorHandler());
+		restTemplate.delete(url, String.class);
+
+	}
+
 	public JSONObject postRequest(JSONObject postObject, String url) throws ParseException {
 		JSONParser jsonParser = new JSONParser();
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.setErrorHandler(new RestErrorHandler());
-		ResponseEntity<String> response
-		  = restTemplate.postForEntity(url, postObject, String.class);
+		ResponseEntity<String> response = restTemplate.postForEntity(url, postObject, String.class);
 		HttpStatus statusCode = response.getStatusCode();
-		if(!statusCode.equals(HttpStatus.OK)) {
-			System.out.println("API call returned status code "+statusCode);
+		if (!statusCode.equals(HttpStatus.OK)) {
+			System.out.println("API call returned status code " + statusCode);
 			JSONObject failureResponse = new JSONObject();
 			failureResponse.put(BuyerConstants.response_status_key, BuyerConstants.failure);
 			return failureResponse;
@@ -49,5 +53,3 @@ public class RestUtils {
 		return (JSONObject) jsonParser.parse(responseBody);
 	}
 }
-
-
