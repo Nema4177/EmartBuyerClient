@@ -18,8 +18,8 @@ public class BuyerConstants {
 	public static final String pushFeedbackPath = "buyer/provideFeedback";
 	public static final String getBuyerHistoryPath = "buyer/getPurchaseHistory";
 
-	public static final List<String> baseURLs = new ArrayList<>(List.of("http://localhost:8080/", "http://localhost:8080/",
-			"http://localhost:8080/", "http://localhost:8080/"));
+	public static final List<String> baseURLs = new ArrayList<>(List.of("http://35.193.133.56:8080/", "http://34.66.784.64:8080/",
+			"http://104.197.234.134:8080/", "http://34.67.45.92:8080/"));
 	
 	public static final int success = 200;
 	public static final long failure = 400;
