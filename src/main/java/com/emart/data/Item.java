@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Item {
 
     private int id;
-    private String name;
+    private String itemName;
     private int category;
     private String keywords;
     private ItemCondition condition;
@@ -18,7 +18,7 @@ public class Item {
 
     public Item(String name, int category, String keyWords, ItemCondition condition, double price,
                 int sellerId, int quantity) {
-        this.name = name;
+        this.itemName = name;
         this.category = category;
         this.keywords = keyWords;
         this.condition = condition;
@@ -36,11 +36,11 @@ public class Item {
     }
 
     public String getName() {
-        return name;
+        return itemName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.itemName = name;
     }
 
     public int getCategory() {

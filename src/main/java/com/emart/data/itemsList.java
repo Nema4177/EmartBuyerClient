@@ -2,7 +2,7 @@ package com.emart.data;
 
 import java.util.List; 
 
-public class ItemList {
+public class itemsList {
 
     private List<Item> items;
 

@@ -77,6 +77,6 @@ public interface BuyerInterfaceApi {
      */
     public void clearCart(int buyerId) throws ParseException;
 
-	JSONObject createAccount(String username, String name, String password) throws ParseException;
+	JSONObject createAccount(int buyerId,String username, String name, String password) throws ParseException;
 
 }

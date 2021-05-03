@@ -18,8 +18,9 @@ public class BuyerApiImplementation implements BuyerInterfaceApi {
     RestUtils restUtils;
 
     @Override
-    public JSONObject createAccount(String username, String name, String password) throws ParseException {
+    public JSONObject createAccount(int buyerId,String username, String name, String password) throws ParseException {
         JSONObject request = new JSONObject();
+        request.put("buyerId", buyerId);
         request.put(BuyerConstants.request_username_key, username);
         request.put("name", name);
         request.put(BuyerConstants.request_password_key, password);

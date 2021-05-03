@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 import com.emart.buyer.BuyerInterfaceApi;
 import com.emart.data.CartItem;
 import com.emart.data.Item;
-import com.emart.data.ItemList;
+import com.emart.data.itemsList;
 import com.emart.data.ItemsPurchased;
 import com.emart.driver.Driver;
 import com.emart.networt.RestUtils;
@@ -91,7 +91,7 @@ public class BuyerDriver implements Driver {
 			Long st = (long) response.get(BuyerConstants.response_status_key);
 			status = st.intValue();
 			if (status == BuyerConstants.success) {
-				ItemList itemList = gson.fromJson((String)response.get(BuyerConstants.response_itemsList_key), ItemList.class);
+				itemsList itemList = gson.fromJson((String)response.get(BuyerConstants.response_itemsList_key), itemsList.class);
 				if (itemList.getCartItems().size() == 0) {
 					System.out.println("Search returned zero items");
 				}
@@ -213,7 +213,7 @@ public class BuyerDriver implements Driver {
 			Long st = (long) response.get(BuyerConstants.response_status_key);
 			status = st.intValue();
 			if (status == BuyerConstants.success) {
-				ItemList itemList = gson.fromJson((String)response.get(BuyerConstants.response_itemsList_key), ItemList.class);
+				itemsList itemList = gson.fromJson((String)response.get(BuyerConstants.response_itemsList_key), itemsList.class);
 				if (itemList.getItems().size() == 0) {
 					System.out.println("Search returned zero items");
 				}
@@ -273,7 +273,7 @@ public class BuyerDriver implements Driver {
 			if (status != BuyerConstants.success) {
 				System.out.println("Fetching buyer history unsuccessful");
 			} else {
-				ItemList itemList = gson.fromJson((String)response.get(BuyerConstants.response_itemsList_key), ItemList.class);
+				itemsList itemList = gson.fromJson((String)response.get(BuyerConstants.response_itemsList_key), itemsList.class);
 				if (itemList.getItemsPurchased().size() == 0) {
 					System.out.println("Items Purchased is 0");
 				}
@@ -393,6 +393,9 @@ public class BuyerDriver implements Driver {
 			String username;
 			String password;
 			String name;
+			int buyerId;
+			System.out.println("Enter BuyerId");
+			buyerId = utils.readInputInteger();
 			System.out.println("Enter username");
 			username = utils.readInputString();
 			System.out.println("Enter name");
@@ -400,7 +403,7 @@ public class BuyerDriver implements Driver {
 			System.out.println("Enter password");
 			password = utils.readInputString();
 			Instant start = Instant.now();
-			JSONObject response = buyerApi.createAccount(username, name, password);
+			JSONObject response = buyerApi.createAccount(buyerId,username, name, password);
 			Instant end = Instant.now();
 			Duration timeElapsed = Duration.between(start, end);
 			System.out.println("Time taken: "+ timeElapsed.toMillis() +" milliseconds");
